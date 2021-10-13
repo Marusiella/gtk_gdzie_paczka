@@ -1,8 +1,8 @@
-use std::{str::FromStr, thread, time::Duration};
+use std::{thread};
 
 use glib::{Continue, MainContext};
 use gtk::{Builder, glib::clone, prelude::{BuilderExtManual, ButtonExt, EntryExt, LabelExt, WidgetExt}};
-use reqwest::header::Entry;
+
 use serde_json::*;
 fn main() {
     // Create a new application
