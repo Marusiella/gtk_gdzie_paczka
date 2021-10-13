@@ -5,7 +5,6 @@ use gtk::{Builder, glib::clone, prelude::{BuilderExtManual, ButtonExt, EntryExt,
 
 use serde_json::*;
 fn main() {
-    // Create a new application
     gtk::init().unwrap();
     let app: Builder = Builder::from_file("./glade.glade");
     let button: gtk::Button = app.object("gdzie_jest_moja_paczka").unwrap();
@@ -25,9 +24,7 @@ fn main() {
     button.connect_clicked(clone!(@weak input => move |_| {
         let sender = sender.clone();
         let b = input.buffer().text();
-        // The long running operation runs now in a separate thread
         thread::spawn(move || {
-            // Deactivate the button until the operation is done
             let body = reqwest::blocking::get(
                 format!("https://api-shipx-pl.easypack24.net/v1/tracking/{}",b),
             )
